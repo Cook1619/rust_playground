@@ -63,7 +63,7 @@ fn main() {
 
     let my_account = BankAccount {
         balance: 10000,
-        verified: false,
+        verified: true,
     };
     // Dot notation to access a value from a struct
     // println!("{:?}", my_account.verified);
