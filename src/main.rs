@@ -3,6 +3,21 @@ struct BankAccount {
     balance: i32,
     verified: bool
 }
+// The & lets ownership happen
+fn print_balance(account: &BankAccount){
+    println!("{:?}", account.balance);
+}
+
+fn print_verified(account: &BankAccount){
+    println!("{:?}", account.verified);
+}
+
+fn is_verified(account: &BankAccount) -> Result<bool, bool>{
+    match account.verified {
+        true => Ok(true),
+        false => Err(false)
+    }
+}
 
 fn add(num_one: i32, num_two: i32) -> i32 {
     num_one + num_two
@@ -51,7 +66,14 @@ fn main() {
         verified: false,
     };
     // Dot notation to access a value from a struct
-    println!("{:?}", my_account.balance);
-    println!("{:?}", my_account.verified);
+    // println!("{:?}", my_account.verified);
+    print_balance(&my_account);
+    // this wont work because print_balance has the ownership, it does this for memory leaks, we can get around this by borrowing ownership
+    // this is done in the function signature and function call with the & symbol
+    print_verified(&my_account);
+
+    let verification_status = is_verified(&my_account)
+        .expect("Unable to unwrap result");
+    println!("Verification Status: {:?}", verification_status);
 }
 
