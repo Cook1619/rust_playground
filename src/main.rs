@@ -1,3 +1,9 @@
+// Seems like a type or interface in TS
+struct BankAccount {
+    balance: i32,
+    verified: bool
+}
+
 fn add(num_one: i32, num_two: i32) -> i32 {
     num_one + num_two
 }
@@ -23,5 +29,29 @@ fn main() {
     };
 
     println!("Your total was: {}", total);
+
+    // Array -> fixed sized, can't push data into them
+    let items: [i32;5] = [1,2,3,4,5];
+    println!("Normal array: {:?}", items);
+
+    // Vector -> dynamic sized -> takes up more storage compared to an array
+    let vector_items = vec![1,2,3,4,5];
+    // Another way to create vectors
+    let mut vector_items_2 = Vec::new();
+    vector_items_2.push(1);
+    vector_items_2.push(2);
+    vector_items_2.push(3);
+    vector_items_2.push(4);
+    vector_items_2.push(5);
+    println!("Vector 1: {:?}", vector_items);
+    println!("Vector 2: {:?}", vector_items_2);
+
+    let my_account = BankAccount {
+        balance: 10000,
+        verified: false,
+    };
+    // Dot notation to access a value from a struct
+    println!("{:?}", my_account.balance);
+    println!("{:?}", my_account.verified);
 }
 
